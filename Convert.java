@@ -49,8 +49,9 @@ public class Convert {
     }
     static int binToDec(String bStr){
        int d =0;
+       bStr=reverse(bStr);
 
-       for(int i=bStr.length()-1; i>=0;i--){
+       for(int i=0; i<bStr.length();i++){
            d+=((Integer.parseInt(String.valueOf(bStr.charAt(i)))*((int)Math.pow(2,i))));
 
        }
