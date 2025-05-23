@@ -47,7 +47,7 @@ public class Convert {
         }
         return reverse(b);
     }
-    static int binToDec(String bStr){
+    static String binToDec(String bStr){
        int d =0;
        bStr=reverse(bStr);
 
@@ -55,9 +55,49 @@ public class Convert {
            d+=((Integer.parseInt(String.valueOf(bStr.charAt(i)))*((int)Math.pow(2,i))));
 
        }
-       return d;
+       return String.valueOf(d);
     }
 
+
+    static String octToDec(String oStr){
+       int d =0;
+       oStr=reverse(oStr);
+
+       for(int i=0; i<oStr.length();i++){
+           d+=((Integer.parseInt(String.valueOf(oStr.charAt(i)))*((int)Math.pow(8,i))));
+
+       }
+       return String.valueOf(d);
+    }
+    
+    static String getHexDigit(int n){
+        switch(n){
+            case 10:
+                return "A";
+            case 11:
+                return "B";
+            case 12:
+                return "C";
+            case 13:
+                return "D";
+            case 14:
+                return "E";
+            case 15:
+                return "F";
+            default:
+                return String.valueOf(n);
+        }
+    }
+
+    static String decToHex(String dStr){
+        int d=Integer.parseInt(dStr);
+        String h="";
+        while(d>0){
+            h+=getHexDigit(d%16);
+            d=d/16;
+        }
+        return h;
+    } 
 
     public static void main(String[] args){
         while(true){
@@ -66,23 +106,27 @@ public class Convert {
             String inp=getInput();
 
             switch(option){
-                case 1:
+                case 1://decimal input
                     System.out.println("Decimal: " + inp);
                     System.out.println("Binary: " + decToBin(inp));
                     System.out.println("Octal: " + decToOct(inp));
-                    //System.out.println("Hexadecimal: " + decToHex(inp));
+                    System.out.println("Hexadecimal: " + decToHex(inp));
                     break;
-                case 2:
+                case 2://binary input
                     System.out.println("Decimal: " + binToDec(inp));
                     System.out.println("Binary: " + inp);
                     System.out.println("Octal: " + decToOct(inp));
-                    //System.out.println("Hexadecimal: " + decToHex(inp));
+                    System.out.println("Hexadecimal: " + decToHex(binToDec(inp)));
                     break;
-                case 3:
+                case 3://octal input
+                    System.out.println("Decimal: " + octToDec(inp));
+                    System.out.println("Binary: " + decToBin(octToDec(inp)));
+                    System.out.println("Octal: " + inp);
+                    System.out.println("Hexadecimal: " + decToHex(octToDec(inp)));
                     break;
-                case 4:
+                case 4://hecadecimal input
                     break;
-                default:
+                default://invalid option
                     System.out.println("Invalid option");
                     break;
             }
