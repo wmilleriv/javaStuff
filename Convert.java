@@ -99,6 +99,34 @@ public class Convert {
         return h;
     } 
 
+    static int getDecDigitFromHex(char h){
+        switch(h){
+            case 'A':
+                return 10;
+            case 'B':
+                return 11;
+            case 'C':
+                return 12;
+            case 'D':
+                return 13;
+            case 'E':
+                return 14;
+            case 'F':
+                return 15;
+            default:
+                return h-'0';
+        }
+    }
+    static String hexToDec(String hStr){
+        int d=0;
+        hStr=reverse(hStr);
+
+        for(int i=0;i<hStr.length();i++){
+           d+=getDecDigitFromHex((hStr.charAt(i)))*((int)Math.pow(16,i));
+        }
+        return String.valueOf(d);
+    }
+
     public static void main(String[] args){
         while(true){
             int option=menu();
@@ -125,6 +153,10 @@ public class Convert {
                     System.out.println("Hexadecimal: " + decToHex(octToDec(inp)));
                     break;
                 case 4://hecadecimal input
+                    System.out.println("Decimal: " + hexToDec(inp));
+                    System.out.println("Binary: " + decToBin(hexToDec(inp)));
+                    System.out.println("Octal: " + decToOct(hexToDec(inp)));
+                    System.out.println("Hexadecimal: " + inp);
                     break;
                 default://invalid option
                     System.out.println("Invalid option");
